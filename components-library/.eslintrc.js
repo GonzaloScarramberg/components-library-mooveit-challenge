@@ -24,5 +24,13 @@ module.exports = {
       0,
       { props: '<string>', children: '<string>' },
     ],
+    'jsx-a11y/label-has-associated-control': [
+      2,
+      {
+        labelComponents: ['label'],
+        labelAttributes: ['htmlFor'],
+        controlComponents: ['input'],
+      },
+    ],
   },
 };

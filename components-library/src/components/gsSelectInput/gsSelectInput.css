@@ -1,0 +1,92 @@
+.gsSelectInput {
+  display: flex;
+  width: 100%;
+  flex-flow: wrap;
+  row-gap: 5px;
+  position: relative;
+}
+
+.gsSelectInputField {
+  width: 100%;
+  padding: 0.5rem;
+  display: flex;
+  border-radius: 4px;
+  border: 1.3px solid black;
+  cursor: pointer;
+  transition: border-color 0.4s;
+}
+
+.gsSelectInputField:hover {
+  border-color: #2196f3;
+}
+
+.gsSelectInputValues {
+  flex: 0 0 85%;
+  font-weight: lighter;
+  display: flex;
+  column-gap: 3px;
+  flex-flow: wrap;
+}
+
+.gsSelectInputIcon {
+  display: flex;
+  flex: 0 0 15%;
+  justify-content: center;
+  align-items: center;
+}
+
+.gsHidden {
+  visibility: hidden;
+  opacity: 0;
+  max-height: 0;
+  transition: all 0.1s ease-in-out;
+  width: 100%;
+  position: absolute;
+  top: 49px;
+  z-index: 1;
+}
+
+.gsSelectInputItemsList {
+  transition: all 0.1s ease-in-out;
+  visibility: visible;
+  opacity: 1;
+  max-height: 1000px;
+  display: flex;
+  z-index: 1;
+  flex-direction: column;
+  box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%),
+    0 1px 10px 0 rgb(0 0 0 / 12%);
+  position: absolute;
+  top: 49px;
+  width: 100%;
+  background-color: white;
+  border-radius: 4px;
+  padding: 0.5rem 0;
+}
+
+.gsSelectInputItemsSelected {
+  padding: 0.2rem 0.5rem;
+  background-color: rgb(12, 10, 62);
+  border-radius: 4px;
+  font-size: 1rem;
+  color: white;
+}
+
+.gsSelectInputItem {
+  cursor: pointer;
+  width: 95%;
+  padding: 0.5rem;
+  display: flex;
+  row-gap: 2px;
+  font-size: 1rem;
+  color: #495057;
+  font-weight: lighter;
+}
+
+.gsSelectInputItem:hover {
+  background: #c2c1c1;
+}
+
+.gsSelectInputItemCheckbox {
+  margin-right: 0.5rem;
+}

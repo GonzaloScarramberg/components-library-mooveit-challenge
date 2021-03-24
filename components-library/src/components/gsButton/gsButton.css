@@ -1,0 +1,177 @@
+.gsbutton {
+  position: relative;
+  overflow: hidden;
+  padding: 1rem;
+  border: none;
+  font-weight: lighter;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}
+
+.Primary {
+  background-color: #2196f3;
+}
+
+.Secondary {
+  background-color: #797c7e;
+}
+
+.Info {
+  background-color: #0288d1;
+}
+
+.Warning {
+  background-color: #d1a102;
+}
+
+.Danger {
+  background-color: #dd0101;
+}
+
+.Primary,
+.Secondary,
+.Info,
+.Warning,
+.Danger {
+  background-position: center;
+  transition: background 0.8s;
+}
+
+.Primary:hover {
+  background: #3f91d4 radial-gradient(circle, transparent 1%, #3f91d4 1%)
+    center/15000%;
+}
+
+.Secondary:hover {
+  background: #656666 radial-gradient(circle, transparent 1%, #656666 1%)
+    center/15000%;
+}
+
+.Info:hover {
+  background: #01659b radial-gradient(circle, transparent 1%, #01659b 1%)
+    center/15000%;
+}
+
+.Warning:hover {
+  background: #b48b02 radial-gradient(circle, transparent 1%, #b48b02 1%)
+    center/15000%;
+}
+
+.Danger:hover {
+  background: #c00000 radial-gradient(circle, transparent 1%, #c00000 1%)
+    center/15000%;
+}
+
+.Primary:active,
+.Secondary:active,
+.Info:active,
+.Warning:active,
+.Danger:active {
+  background-size: 100%;
+  transition: background 0s;
+}
+
+.Primary:active {
+  background-color: #2196f3;
+}
+
+.Secondary:active {
+  background-color: #797c7e;
+}
+
+.Info:active {
+  background-color: #0288d1;
+}
+
+.Warning:active {
+  background-color: #d1a102;
+}
+
+.Danger:active {
+  background-color: #dd0101;
+}
+
+.Small {
+  font-size: 0.75rem;
+}
+
+.Medium {
+  font-size: 1rem;
+}
+
+.Large {
+  font-size: 1.25rem;
+}
+
+.Raised {
+  box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
+    0 1px 5px 0 rgb(0 0 0 / 12%);
+}
+
+.Rounded {
+  border-radius: 2rem;
+}
+
+.Primary.Text {
+  background: none;
+  color: #2196f3;
+  border: 1px solid #2196f3;
+}
+
+.Primary.Text:hover {
+  background: #d9eeff radial-gradient(circle, transparent 1%, #d9eeff 1%)
+    center/15000%;
+}
+
+.Secondary.Text {
+  background: none;
+  color: #797c7e;
+  border: 1px solid #797c7e;
+}
+
+.Secondary.Text:hover {
+  transition: background 0.8 ease-in;
+  background: #f3f3f3 radial-gradient(circle, transparent 1%, #f3f3f3 1%)
+    center/15000%;
+}
+
+.Info.Text {
+  background: none;
+  color: #0288d1;
+  border: 1px solid #0288d1;
+}
+
+.Info.Text:hover {
+  transition: background 0.8 ease-in;
+  background: #d2e9f5 radial-gradient(circle, transparent 1%, #d2e9f5 1%)
+    center/15000%;
+}
+
+.Warning.Text {
+  background: none;
+  color: #d1a102;
+  border: 1px solid #d1a102;
+}
+
+.Warning.Text:hover {
+  transition: background 0.8 ease-in;
+  background: #faf6e7 radial-gradient(circle, transparent 1%, #faf6e7 1%)
+    center/15000%;
+}
+
+.Danger.Text {
+  background: none;
+  color: #dd0101;
+  border: 1px solid #dd0101;
+}
+
+.Danger.Text:hover {
+  transition: background 0.8 ease-in;
+  background: #f3d4d4 radial-gradient(circle, transparent 1%, #f3d4d4 1%)
+    center/15000%;
+}
