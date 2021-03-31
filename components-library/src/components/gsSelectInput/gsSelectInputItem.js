@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './gsSelectInput.css';
+import 'styled-components/macro';
+import { Item } from '../shared/sharedStyledComponents';
 
 const GSSelectInputItem = ({ name, isMultiSelect, updateCheckStatus }) => {
   const [isChecked, setIsChecked] = React.useState(false);
@@ -12,8 +13,7 @@ const GSSelectInputItem = ({ name, isMultiSelect, updateCheckStatus }) => {
   });
 
   return (
-    <div
-      className={`gsSelectInputItem`}
+    <Item
       aria-hidden='true'
       onClick={() => {
         updateCheckStatus({ Name: name, Checked: !isChecked });
@@ -21,16 +21,23 @@ const GSSelectInputItem = ({ name, isMultiSelect, updateCheckStatus }) => {
       }}
     >
       <div
-        className={`${
-          isMultiSelect ? 'gsSelectInputItemCheckbox' : 'gsHidden'
-        }`}
+        css={`
+          margin-right: ${isMultiSelect && `0.5rem`};
+        `}
       >
-        <input type='checkbox' checked={isChecked && isMultiSelect} />
+        {isMultiSelect && (
+          <input
+            className='checkbox'
+            type='checkbox'
+            checked={isChecked && isMultiSelect}
+            data-testid={`checkbox-${name}`}
+          />
+        )}
       </div>
       <div>
         <span>{name}</span>
       </div>
-    </div>
+    </Item>
   );
 };
 

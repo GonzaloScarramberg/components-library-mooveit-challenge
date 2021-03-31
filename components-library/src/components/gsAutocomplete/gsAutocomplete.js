@@ -1,99 +1,107 @@
-import React from 'react';
-import './gsAutocomplete.css';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { ThemeContext } from 'styled-components';
+import '../shared/globalStyles.css';
+import * as Styles from './autocompleteStyles';
+import { ItemsList, Item } from '../shared/sharedStyledComponents';
 import GSAutocompleteItem from './gsAutocompleteItem';
+import Theme from '../themes/theme';
 
 const GSAutocomplete = ({
   noResultsMessage,
   placeholder,
   disabled,
   maxHeight,
+  options,
+  value,
+  onChangeValue,
 }) => {
   const [isItemListVisible, setIsItemListVisible] = React.useState(false);
   const [itemsFiltered, setItemsFiltered] = React.useState([]);
-  const [inputValue, setInputValue] = React.useState('');
-
-  const items = [
-    { name: 'Argentina', id: 1 },
-    { name: 'Brasil', id: 2 },
-    { name: 'Chile', id: 3 },
-    { name: 'Uruguay', id: 4 },
-    { name: 'Colombia', id: 5 },
-    { name: 'China', id: 6 },
-    { name: 'Italia', id: 7 },
-    { name: 'Grecia', id: 8 },
-    { name: 'Peru', id: 9 },
-    { name: 'Ecuador', id: 10 },
-  ];
 
   const handleAutocomplete = (e) => {
-    const filter = items.filter((item) =>
-      item.name.toUpperCase().startsWith(e.toUpperCase()),
+    const filter = options.filter((item) =>
+      item.toUpperCase().startsWith(e.toUpperCase()),
     );
-
     setItemsFiltered(filter);
-    setIsItemListVisible(true);
-    setInputValue(e);
   };
 
-  const updateValue = (e) => {
-    setInputValue(e);
+  React.useEffect(() => {
+    handleAutocomplete(value);
+  }, [value]);
+
+  const handleOnChangeInputValue = (e) => {
+    setIsItemListVisible(true);
+    onChangeValue(e);
+  };
+
+  const updateCheckedValue = (e) => {
+    onChangeValue(e);
     handleAutocomplete(e);
     setIsItemListVisible(!isItemListVisible);
   };
 
   const FilterResults = () => {
     if (itemsFiltered.length === 0) {
-      return <div className={`gsAutocompleteItem`}>{noResultsMessage}</div>;
+      return <Item>{noResultsMessage}</Item>;
     }
     return itemsFiltered.map((item) => (
       <GSAutocompleteItem
-        key={item.id}
-        name={item.name}
-        optionSelected={updateValue}
+        key={item}
+        description={item}
+        optionSelected={updateCheckedValue}
       />
     ));
   };
 
+  const OptionsList = () =>
+    value !== '' ? (
+      <FilterResults />
+    ) : (
+      options.map((item) => (
+        <GSAutocompleteItem
+          key={item}
+          description={item}
+          optionSelected={updateCheckedValue}
+        />
+      ))
+    );
+
   return (
-    <div className={`gsAutocomplete`}>
-      <div
-        className={`gsAutocompleteField`}
-        aria-hidden='true'
-        onClick={() => !disabled && setIsItemListVisible(!isItemListVisible)}
-      >
-        <div className={`gsAutocompleteInputField`}>
-          <input
-            placeholder={placeholder}
-            disabled={disabled}
-            value={inputValue}
-            type='text'
-            name='gsAutocompleteInputField'
-            id='gsAutocompleteInputField'
-            className={`gsAutocompleteValue`}
-            onChange={(e) => handleAutocomplete(e.target.value)}
-          />
-        </div>
-      </div>
-      <div
-        className={`${
-          isItemListVisible ? 'gsAutocompleteItemsList' : 'gsHidden'
-        }`}
-      >
-        {inputValue !== '' ? (
-          <FilterResults />
-        ) : (
-          items.map((item) => (
-            <GSAutocompleteItem
-              key={item.id}
-              name={item.name}
-              optionSelected={updateValue}
+    <Theme theme={useContext(ThemeContext)}>
+      <Styles.AutocompleteDiv>
+        <Styles.AutocompleteField
+          data-testid='gsAutocompleteField'
+          className={`gsAutocompleteField`}
+          aria-hidden='true'
+          onClick={() => !disabled && setIsItemListVisible(!isItemListVisible)}
+        >
+          <div style={{ width: '100%' }}>
+            <input
+              style={{ width: '100%' }}
+              autoComplete='off'
+              data-testid='autocompleteInput'
+              placeholder={placeholder}
+              disabled={disabled}
+              value={value}
+              type='text'
+              name='gsAutocompleteInputField'
+              id='gsAutocompleteInputField'
+              className={'input'}
+              onChange={(e) => handleOnChangeInputValue(e.target.value)}
             />
-          ))
+          </div>
+        </Styles.AutocompleteField>
+        {isItemListVisible && (
+          <ItemsList
+            data-testid='gsAutocompleteItemsList'
+            maxHeight={maxHeight}
+          >
+            <OptionsList />
+          </ItemsList>
         )}
-      </div>
-      <div id='prueba'>{maxHeight}</div>
-    </div>
+      </Styles.AutocompleteDiv>
+    </Theme>
   );
 };
 
@@ -102,6 +110,9 @@ GSAutocomplete.propTypes = {
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
   maxHeight: PropTypes.string,
+  options: PropTypes.arrayOf(PropTypes.string),
+  value: PropTypes.string,
+  onChangeValue: PropTypes.func,
 };
 
 GSAutocomplete.defaultProps = {
@@ -109,6 +120,9 @@ GSAutocomplete.defaultProps = {
   placeholder: 'choose an option',
   disabled: false,
   maxHeight: '200',
+  options: [],
+  value: '',
+  onChangeValue: () => {},
 };
 
 export default GSAutocomplete;

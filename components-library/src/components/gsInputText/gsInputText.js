@@ -1,6 +1,14 @@
-import React from 'react';
-import './gsInputText.css';
+import React, { useContext } from 'react';
+import { ThemeContext } from 'styled-components';
 import PropTypes from 'prop-types';
+import '../shared/globalStyles.css';
+import {
+  InputTextDiv,
+  InputTextField,
+  InputTextLabel,
+  InputTextResetButton,
+} from './gsInputTextStyles';
+import Theme from '../themes/theme';
 
 const GSInputText = ({
   style,
@@ -9,56 +17,60 @@ const GSInputText = ({
   hasResetButton,
   fieldName,
   disabled,
+  value,
+  onChangeValue,
 }) => {
   const [isFocused, setIsFocused] = React.useState(false);
-  const [inputValue, setInputValue] = React.useState('');
 
   const handleLabelFocus = () => {
-    if (inputValue === '') {
+    if (value === '') {
       setIsFocused(false);
     }
   };
 
   return (
-    <div
-      className={`gsInputText`}
-      onFocus={() => setIsFocused(true)}
-      onBlur={handleLabelFocus}
-    >
-      <div>
-        <input
-          disabled={disabled}
-          placeholder={isFocused ? placeholder : ''}
-          maxLength={maxLength}
-          value={inputValue}
-          type='text'
-          name='gsInput'
-          id='gsInputText'
-          className={`gsInputTextField ${style}`}
-          onChange={(e) => {
-            setInputValue(e.target.value);
-          }}
-        />
-        {hasResetButton && inputValue !== '' && !disabled && (
-          <span
-            className={`gsInputTextResetButton`}
-            aria-hidden='true'
-            onClick={() => {
-              setInputValue('');
-              setIsFocused(false);
-            }}
-          >
-            X
-          </span>
-        )}
-      </div>
-      <label
-        htmlFor='gsInputText'
-        className={`gsInputTextLabel ${style} ${isFocused ? 'focused' : ''}`}
+    <Theme theme={useContext(ThemeContext)}>
+      <InputTextDiv
+        id='gsInputText'
+        onFocus={() => setIsFocused(true)}
+        onBlur={handleLabelFocus}
       >
-        {fieldName}
-      </label>
-    </div>
+        <div>
+          <InputTextField
+            inputStyle={style}
+            disabled={disabled}
+            placeholder={isFocused ? placeholder : ''}
+            maxLength={maxLength !== '0' ? maxLength : ''}
+            value={value}
+            type='text'
+            name='gsInput'
+            id='gsInputText'
+            className={'input'}
+            onChange={(e) => {
+              onChangeValue(e.target.value);
+            }}
+          />
+          {hasResetButton && value !== '' && !disabled && (
+            <InputTextResetButton
+              aria-hidden='true'
+              onClick={() => {
+                onChangeValue('');
+                setIsFocused(false);
+              }}
+            >
+              X
+            </InputTextResetButton>
+          )}
+          <InputTextLabel
+            htmlFor='gsInputText'
+            isFocused={isFocused}
+            inputStyle={style}
+          >
+            {fieldName}
+          </InputTextLabel>
+        </div>
+      </InputTextDiv>
+    </Theme>
   );
 };
 
@@ -69,15 +81,19 @@ GSInputText.propTypes = {
   hasResetButton: PropTypes.bool,
   fieldName: PropTypes.string,
   disabled: PropTypes.bool,
+  value: PropTypes.string,
+  onChangeValue: PropTypes.func,
 };
 
 GSInputText.defaultProps = {
   style: 'Bottom-Lined',
   placeholder: 'Placeholder',
-  maxLength: 0,
+  maxLength: '0',
   hasResetButton: false,
   fieldName: 'Field',
   disabled: false,
+  value: '',
+  onChangeValue: () => {},
 };
 
 export default GSInputText;

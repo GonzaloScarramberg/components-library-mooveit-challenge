@@ -1,28 +1,35 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ThemeContext } from 'styled-components';
 import PropTypes from 'prop-types';
+import '../shared/globalStyles.css';
+import Theme from '../themes/theme';
 
-const GSInputNumber = ({ style }) => {
-  const [inputValue, setInputValue] = React.useState(0);
-
+const GSInputNumber = ({
+  format,
+  disabled,
+  placeholder,
+  value,
+  onChangeValue,
+}) => {
   React.useEffect(() => {
-    setInputValue('');
-  }, [style]);
+    onChangeValue('');
+  }, [format]);
 
-  const handleInputStyle = (event) => {
-    setInputValue(event.target.value.replace(/\D/, ''));
+  const handleInputValue = (event) => {
+    onChangeValue(event.target.value.replace(/\D/, ''));
 
     const regexExpression = /(\d)(?=(\d{3})+$)/g;
 
-    switch (style) {
+    switch (format) {
       case 'grouped-commas':
-        setInputValue(
+        onChangeValue(
           event.target.value
             .replaceAll(',', '')
             .replace(regexExpression, '$1,'),
         );
         break;
       case 'grouped-dots':
-        setInputValue(
+        onChangeValue(
           event.target.value
             .replaceAll('.', '')
             .replace(regexExpression, '$1.'),
@@ -34,16 +41,32 @@ const GSInputNumber = ({ style }) => {
   };
 
   return (
-    <input value={inputValue} onChange={(event) => handleInputStyle(event)} />
+    <Theme theme={useContext(ThemeContext)}>
+      <input
+        className={'input'}
+        value={value}
+        disabled={disabled}
+        onChange={(event) => handleInputValue(event)}
+        placeholder={placeholder}
+      />
+    </Theme>
   );
 };
 
 GSInputNumber.propTypes = {
-  style: PropTypes.string,
+  format: PropTypes.string,
+  disabled: PropTypes.bool,
+  placeholder: PropTypes.string,
+  value: PropTypes.string,
+  onChangeValue: PropTypes.func,
 };
 
 GSInputNumber.defaultProps = {
-  style: 'no-grouped',
+  format: 'no-grouped',
+  disabled: false,
+  placeholder: 'Insert a number',
+  value: '',
+  onChangeValue: () => {},
 };
 
 export default GSInputNumber;

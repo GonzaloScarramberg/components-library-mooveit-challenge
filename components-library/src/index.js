@@ -1,18 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
-import './styles/globalStyles.css';
-import RouterSetup from './router';
-
-ReactDOM.render(
-  <React.StrictMode>
-    <RouterSetup />
-  </React.StrictMode>,
-  document.getElementById('root'),
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+export { default as GSButton } from './components/gsButton/gsbutton';
+export { default as GSAutocomplete } from './components/gsAutocomplete/gsAutocomplete';
+export { default as GSInputText } from './components/gsInputText/gsInputText';
+export { default as GSInputNumber } from './components/gsInputNumber/gsInputNumber';
+export { default as GSSelectInput } from './components/gsSelectInput/gsSelectInput';
