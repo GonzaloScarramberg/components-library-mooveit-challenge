@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import GSAutocomplete from './gsAutocomplete';
+import '@testing-library/jest-dom/extend-expect';
 
 test('Shows item list when clicking input field', () => {
   const options = ['Argentina', 'Brasil', 'Chile', 'China', 'Uruguay'];

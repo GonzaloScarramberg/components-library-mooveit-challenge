@@ -57,20 +57,18 @@ const GSSelectInput = ({
           </Styles.SelectInputValues>
           <Styles.SelectInputIcon>+</Styles.SelectInputIcon>
         </Styles.SelectInputField>
-        {isItemListVisible && (
-          <ItemsList maxHeight={maxHeight}>
-            {options.map((item) => (
-              <GSSelectInputItem
-                key={item}
-                name={item}
-                isMultiSelect={isMultiSelect}
-                updateCheckStatus={(e) => {
-                  updateCheckedValue(e);
-                }}
-              />
-            ))}
-          </ItemsList>
-        )}
+        <ItemsList maxHeight={maxHeight} visibility={isItemListVisible}>
+          {options.map((item) => (
+            <GSSelectInputItem
+              key={item}
+              name={item}
+              isMultiSelect={isMultiSelect}
+              updateCheckStatus={(e) => {
+                updateCheckedValue(e);
+              }}
+            />
+          ))}
+        </ItemsList>
       </Styles.SelectInputDiv>
     </Theme>
   );

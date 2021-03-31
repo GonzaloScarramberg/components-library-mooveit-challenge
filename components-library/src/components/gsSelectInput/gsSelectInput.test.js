@@ -1,6 +1,7 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import GSSelectInput from './gsSelectInput';
+import '@testing-library/jest-dom/extend-expect';
 
 test('Add placeholder', () => {
   const { getByTestId } = render(

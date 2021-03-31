@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const ItemsList = styled.div`
-  transition: all 0.5s ease-in-out;
-  visibility: visible;
-  opacity: 1;
+  transition: all 0.3s ease-in-out;
+  visibility: ${(props) => (props.visibility ? css`visible` : css`hidden`)};
+  opacity: ${(props) => (props.visibility ? 1 : 0)};
   max-height: ${(props) => props.maxHeight}px;
   display: flex;
   z-index: 1;
@@ -16,8 +16,8 @@ const ItemsList = styled.div`
   background-color: white;
   border-radius: 4px;
   padding: 0.5rem 0;
-  margin-left: 0.5rem;
   overflow: auto;
+  font-family: ${(props) => props.theme.typography.fontFamily};
 `;
 
 const Item = styled.div`

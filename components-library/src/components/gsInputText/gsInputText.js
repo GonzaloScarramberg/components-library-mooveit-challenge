@@ -35,7 +35,12 @@ const GSInputText = ({
         onFocus={() => setIsFocused(true)}
         onBlur={handleLabelFocus}
       >
-        <div>
+        <div
+          css={`
+            width: 100%;
+            display: flex;
+          `}
+        >
           <InputTextField
             inputStyle={style}
             disabled={disabled}
@@ -45,6 +50,7 @@ const GSInputText = ({
             type='text'
             name='gsInput'
             id='gsInputText'
+            autoComplete='off'
             className={'input'}
             onChange={(e) => {
               onChangeValue(e.target.value);

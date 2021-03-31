@@ -10,6 +10,7 @@ const GSInputNumber = ({
   placeholder,
   value,
   onChangeValue,
+  buttons,
 }) => {
   React.useEffect(() => {
     onChangeValue('');
@@ -42,13 +43,58 @@ const GSInputNumber = ({
 
   return (
     <Theme theme={useContext(ThemeContext)}>
-      <input
-        className={'input'}
-        value={value}
-        disabled={disabled}
-        onChange={(event) => handleInputValue(event)}
-        placeholder={placeholder}
-      />
+      <div
+        css={`
+          width: 100%;
+          display: flex;
+          position: relative;
+        `}
+      >
+        <input
+          css={`
+            width: 100%;
+            flex: 2 1 90%;
+          `}
+          autoComplete='off'
+          className={'input'}
+          value={value}
+          disabled={disabled}
+          onChange={(event) => handleInputValue(event)}
+          placeholder={placeholder}
+        />
+        {buttons !== '0' && (
+          <div
+            css={`
+              width: 5%;
+              height: 100%;
+              display: flex;
+              flex-direction: column;
+              flex: 1 1 20%;
+              position: absolute;
+              right: 1px;
+            `}
+          >
+            <button
+              onClick={() => onChangeValue(+value + +buttons)}
+              type='button'
+              css={`
+                height: 50%;
+              `}
+            >
+              +
+            </button>
+            <button
+              onClick={() => onChangeValue(value - buttons)}
+              type='button'
+              css={`
+                height: 50%;
+              `}
+            >
+              -
+            </button>
+          </div>
+        )}
+      </div>
     </Theme>
   );
 };
@@ -59,6 +105,7 @@ GSInputNumber.propTypes = {
   placeholder: PropTypes.string,
   value: PropTypes.string,
   onChangeValue: PropTypes.func,
+  buttons: PropTypes.string,
 };
 
 GSInputNumber.defaultProps = {
@@ -67,6 +114,7 @@ GSInputNumber.defaultProps = {
   placeholder: 'Insert a number',
   value: '',
   onChangeValue: () => {},
+  buttons: '0',
 };
 
 export default GSInputNumber;

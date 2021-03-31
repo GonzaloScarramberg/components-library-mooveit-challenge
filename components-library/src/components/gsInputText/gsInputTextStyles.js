@@ -6,6 +6,7 @@ const InputTextDiv = styled.div`
   position: relative;
   border-radius: 4px;
   width: 100%;
+  font-family: ${(props) => props.theme.typography.fontFamily};
 `;
 
 const InputTextField = styled.input`

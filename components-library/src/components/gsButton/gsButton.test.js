@@ -1,6 +1,7 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import GSButton from './gsbutton';
+import '@testing-library/jest-dom/extend-expect';
 
 test('Disable button when disable property is true', () => {
   const { container } = render(<GSButton disabled />);

@@ -76,9 +76,16 @@ const GSAutocomplete = ({
           aria-hidden='true'
           onClick={() => !disabled && setIsItemListVisible(!isItemListVisible)}
         >
-          <div style={{ width: '100%' }}>
-            <input
-              style={{ width: '100%' }}
+          <div
+            css={`
+              width: 100%;
+              display: flex;
+            `}
+          >
+            <Styles.AutocompleteInput
+              css={`
+                width: 100%;
+              `}
               autoComplete='off'
               data-testid='autocompleteInput'
               placeholder={placeholder}
@@ -92,14 +99,13 @@ const GSAutocomplete = ({
             />
           </div>
         </Styles.AutocompleteField>
-        {isItemListVisible && (
-          <ItemsList
-            data-testid='gsAutocompleteItemsList'
-            maxHeight={maxHeight}
-          >
-            <OptionsList />
-          </ItemsList>
-        )}
+        <ItemsList
+          visibility={isItemListVisible}
+          data-testid='gsAutocompleteItemsList'
+          maxHeight={maxHeight}
+        >
+          <OptionsList />
+        </ItemsList>
       </Styles.AutocompleteDiv>
     </Theme>
   );

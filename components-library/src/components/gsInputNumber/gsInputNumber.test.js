@@ -1,6 +1,7 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import GSInputNumber from './gsInputNumber';
+import '@testing-library/jest-dom/extend-expect';
 
 test('Disable input when disable property is true', () => {
   const { container } = render(<GSInputNumber disabled />);

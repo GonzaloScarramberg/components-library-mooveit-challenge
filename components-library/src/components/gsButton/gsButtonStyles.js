@@ -19,11 +19,11 @@ const secondaryColors = (props) =>
   }`;
 
 const Button = styled.button`
+  font-family: ${(props) => props.theme.typography.fontFamily};
   position: relative;
   overflow: hidden;
   padding: 1rem;
   border: none;
-  font-weight: lighter;
   color: white;
   border-radius: 4px;
   cursor: pointer;

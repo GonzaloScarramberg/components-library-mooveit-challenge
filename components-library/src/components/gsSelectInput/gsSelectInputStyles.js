@@ -6,6 +6,7 @@ const SelectInputDiv = styled.div`
   flex-flow: wrap;
   row-gap: 5px;
   position: relative;
+  font-family: ${(props) => props.theme.typography.fontFamily};
 `;
 
 const SelectInputField = styled.div`
