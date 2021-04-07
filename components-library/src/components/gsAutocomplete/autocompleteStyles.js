@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const AutocompleteDiv = styled.div`
   display: flex;
@@ -18,6 +18,7 @@ const AutocompleteField = styled.div`
 
 const AutocompleteInput = styled.input`
   width: 100%;
+  opacity: ${(props) => props.disabled && css`0.5`};
   $:focus {
     border-color: ${(props) => props.theme.palette.primary.main};
   }

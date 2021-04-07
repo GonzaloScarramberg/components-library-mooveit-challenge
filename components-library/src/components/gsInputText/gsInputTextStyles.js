@@ -11,6 +11,7 @@ const InputTextDiv = styled.div`
 
 const InputTextField = styled.input`
   width: 100%;
+  opacity: ${(props) => props.disabled && css`0.5`};
   &:focus {
     border: ${(props) =>
       props.inputStyle === 'Outlined' &&
@@ -46,7 +47,6 @@ const InputTextLabel = styled.label`
   z-index: 1;
   transition: transform 150ms ease-out, font-size 150ms ease-out;
   opacity: ${(props) => (props.isFocused ? 1 : 0.5)};
-  font-weight: lighter;
   &:focus {
     opacity: 1;
     color: ${(props) => props.theme.palette.primary.main};

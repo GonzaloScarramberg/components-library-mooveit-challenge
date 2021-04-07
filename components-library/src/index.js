@@ -3,3 +3,4 @@ export { default as GSAutocomplete } from './components/gsAutocomplete/gsAutocom
 export { default as GSInputText } from './components/gsInputText/gsInputText';
 export { default as GSInputNumber } from './components/gsInputNumber/gsInputNumber';
 export { default as GSSelectInput } from './components/gsSelectInput/gsSelectInput';
+export { default as Theme } from './components/themes/theme';

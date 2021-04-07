@@ -29,9 +29,6 @@ const Item = styled.div`
   font-size: 1rem;
   color: #495057;
   font-weight: lighter;
-  $:hover {
-    background: #c2c1c1;
-  }
 `;
 
 export { ItemsList, Item };

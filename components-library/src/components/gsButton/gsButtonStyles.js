@@ -24,6 +24,7 @@ const Button = styled.button`
   overflow: hidden;
   padding: 1rem;
   border: none;
+  outline: none;
   color: white;
   border-radius: 4px;
   cursor: pointer;
@@ -34,6 +35,7 @@ const Button = styled.button`
     (props.size === 'Medium' && css`1rem`) ||
     (props.size === 'Large' && css`1.25rem`)};
   background-color: ${(props) => primaryColors(props)};
+  opacity: ${(props) => props.disabled && css`0.5`};
   &:focus {
     outline: none;
   }

@@ -14,6 +14,7 @@ const GSSelectInput = ({
   options,
   value,
   maxHeight,
+  disabled,
   onChangeValue,
 }) => {
   const [isItemListVisible, setIsItemListVisible] = React.useState(false);
@@ -52,23 +53,28 @@ const GSSelectInput = ({
           onClick={() => setIsItemListVisible(!isItemListVisible)}
           aria-hidden='true'
         >
-          <Styles.SelectInputValues data-testid='gsSelectInputValues'>
+          <Styles.SelectInputValues
+            data-testid='gsSelectInputValues'
+            disabled={disabled}
+          >
             {value.length !== 0 ? handleItemStyle() : `${placeholder}`}
           </Styles.SelectInputValues>
           <Styles.SelectInputIcon>+</Styles.SelectInputIcon>
         </Styles.SelectInputField>
-        <ItemsList maxHeight={maxHeight} visibility={isItemListVisible}>
-          {options.map((item) => (
-            <GSSelectInputItem
-              key={item}
-              name={item}
-              isMultiSelect={isMultiSelect}
-              updateCheckStatus={(e) => {
-                updateCheckedValue(e);
-              }}
-            />
-          ))}
-        </ItemsList>
+        {!disabled && (
+          <ItemsList maxHeight={maxHeight} visibility={isItemListVisible}>
+            {options.map((item) => (
+              <GSSelectInputItem
+                key={item}
+                name={item}
+                isMultiSelect={isMultiSelect}
+                updateCheckStatus={(e) => {
+                  updateCheckedValue(e);
+                }}
+              />
+            ))}
+          </ItemsList>
+        )}
       </Styles.SelectInputDiv>
     </Theme>
   );
@@ -81,6 +87,7 @@ GSSelectInput.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string),
   value: PropTypes.arrayOf(PropTypes.string),
   maxHeight: PropTypes.string,
+  disabled: PropTypes.bool,
   onChangeValue: PropTypes.func,
 };
 
@@ -91,6 +98,7 @@ GSSelectInput.defaultProps = {
   options: [],
   value: [],
   maxHeight: '200',
+  disabled: false,
   onChangeValue: () => {},
 };
 

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const SelectInputDiv = styled.div`
   display: flex;
@@ -23,6 +23,7 @@ const SelectInputField = styled.div`
 `;
 
 const SelectInputValues = styled.div`
+  opacity: ${(props) => props.disabled && css`0.5`};
   flex: 0 0 85%;
   font-weight: lighter;
   display: flex;

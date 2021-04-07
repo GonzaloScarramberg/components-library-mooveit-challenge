@@ -3,6 +3,7 @@ import { ThemeContext } from 'styled-components';
 import PropTypes from 'prop-types';
 import '../shared/globalStyles.css';
 import Theme from '../themes/theme';
+import * as Styles from './gsInputNumberStyles';
 
 const GSInputNumber = ({
   format,
@@ -16,85 +17,84 @@ const GSInputNumber = ({
     onChangeValue('');
   }, [format]);
 
-  const handleInputValue = (event) => {
-    onChangeValue(event.target.value.replace(/\D/, ''));
+  const handleInputValue = (inputValue) => {
+    let valueFormatted = inputValue;
+
+    valueFormatted = valueFormatted.toString().replace(/\D/, '');
 
     const regexExpression = /(\d)(?=(\d{3})+$)/g;
 
     switch (format) {
       case 'grouped-commas':
-        onChangeValue(
-          event.target.value
-            .replaceAll(',', '')
-            .replace(regexExpression, '$1,'),
-        );
+        valueFormatted = valueFormatted
+          .replaceAll(',', '')
+          .replace(regexExpression, '$1,');
         break;
       case 'grouped-dots':
-        onChangeValue(
-          event.target.value
-            .replaceAll('.', '')
-            .replace(regexExpression, '$1.'),
-        );
+        valueFormatted = valueFormatted
+          .replaceAll('.', '')
+          .replace(regexExpression, '$1.');
         break;
       default:
         break;
     }
+
+    onChangeValue(valueFormatted);
+  };
+
+  const handleButtonsAction = (inputValue, buttonsValue, operator) => {
+    let valueFormatted = inputValue
+      .toString()
+      .replaceAll(',', '')
+      .replaceAll('.', '');
+
+    if (operator === 'sumOperator') {
+      valueFormatted = +valueFormatted + +buttonsValue;
+    } else if (valueFormatted > 0) {
+      valueFormatted -= buttonsValue;
+    }
+
+    if (valueFormatted < buttonsValue) {
+      valueFormatted = 0;
+    }
+
+    handleInputValue(valueFormatted);
   };
 
   return (
     <Theme theme={useContext(ThemeContext)}>
-      <div
-        css={`
-          width: 100%;
-          display: flex;
-          position: relative;
-        `}
-      >
-        <input
-          css={`
-            width: 100%;
-            flex: 2 1 90%;
-          `}
+      <Styles.InputNumberDiv>
+        <Styles.InputNumberField
           autoComplete='off'
           className={'input'}
           value={value}
           disabled={disabled}
-          onChange={(event) => handleInputValue(event)}
+          onChange={(event) => handleInputValue(event.target.value)}
           placeholder={placeholder}
         />
-        {buttons !== '0' && (
-          <div
-            css={`
-              width: 5%;
-              height: 100%;
-              display: flex;
-              flex-direction: column;
-              flex: 1 1 20%;
-              position: absolute;
-              right: 1px;
-            `}
-          >
-            <button
-              onClick={() => onChangeValue(+value + +buttons)}
+        {/^\d+$/.test(buttons) && (
+          <Styles.InputNumberButtonsDiv>
+            <Styles.InputNumberButton
+              name='sumOperator'
+              onClick={(e) =>
+                handleButtonsAction(value, buttons, e.target.name)
+              }
               type='button'
-              css={`
-                height: 50%;
-              `}
             >
               +
-            </button>
-            <button
-              onClick={() => onChangeValue(value - buttons)}
+            </Styles.InputNumberButton>
+            <Styles.InputNumberButton
+              name='minusOperator'
+              onClick={(e) =>
+                handleButtonsAction(value, buttons, e.target.name)
+              }
               type='button'
-              css={`
-                height: 50%;
-              `}
             >
               -
-            </button>
-          </div>
+            </Styles.InputNumberButton>
+          </Styles.InputNumberButtonsDiv>
         )}
-      </div>
+      </Styles.InputNumberDiv>
     </Theme>
   );
 };
@@ -114,7 +114,7 @@ GSInputNumber.defaultProps = {
   placeholder: 'Insert a number',
   value: '',
   onChangeValue: () => {},
-  buttons: '0',
+  buttons: '',
 };
 
 export default GSInputNumber;
