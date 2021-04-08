@@ -31,6 +31,7 @@ const GSSelectInputItem = ({ name, isMultiSelect, updateCheckStatus }) => {
             type='checkbox'
             checked={isChecked && isMultiSelect}
             data-testid={`checkbox-${name}`}
+            readOnly
           />
         )}
       </div>

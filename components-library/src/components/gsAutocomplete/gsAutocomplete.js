@@ -100,7 +100,7 @@ const GSAutocomplete = ({
           </div>
         </Styles.AutocompleteField>
         <ItemsList
-          visibility={isItemListVisible}
+          visible={isItemListVisible}
           data-testid='gsAutocompleteItemsList'
           maxHeight={maxHeight}
         >

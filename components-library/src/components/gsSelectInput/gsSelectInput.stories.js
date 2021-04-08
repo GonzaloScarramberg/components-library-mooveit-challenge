@@ -8,7 +8,6 @@ export default {
 
 const Template = (args) => {
   const [value, setValue] = React.useState();
-  // eslint-disable-next-line react/jsx-props-no-spreading
   return <GSSelectInput {...args} value={value} onChangeValue={setValue} />;
 };
 

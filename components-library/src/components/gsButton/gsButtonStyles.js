@@ -29,7 +29,7 @@ const Button = styled.button`
   border-radius: 4px;
   cursor: pointer;
   background-position: center;
-  transition: background 0.8s;
+  transition: background 0.5s;
   font-size: ${(props) =>
     (props.size === 'Small' && css`0.75rem`) ||
     (props.size === 'Medium' && css`1rem`) ||
@@ -40,8 +40,20 @@ const Button = styled.button`
     outline: none;
   }
   &:hover {
-    background: ${(props) => secondaryColors(props)};
+    background: ${(props) => secondaryColors(props)}
+      radial-gradient(
+        circle,
+        transparent 1%,
+        ${(props) => secondaryColors(props)} 1%
+      )
+      center/15000%;
     color: ${(props) => props.buttonStyle === 'Text' && css`white`};
+  }
+
+  &:active {
+    background-color: ${(props) => primaryColors(props)};
+    background-size: 100%;
+    transition: background 0s;
   }
 
   ${(props) =>

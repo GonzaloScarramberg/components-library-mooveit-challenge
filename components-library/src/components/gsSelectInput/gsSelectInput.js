@@ -3,7 +3,7 @@ import { ThemeContext } from 'styled-components';
 import '../shared/globalStyles.css';
 import PropTypes from 'prop-types';
 import GSSelectInputItem from './gsSelectInputItem';
-import { ItemsList } from '../shared/sharedStyledComponents';
+import { ItemsList, Arrow } from '../shared/sharedStyledComponents';
 import * as Styles from './gsSelectInputStyles';
 import Theme from '../themes/theme';
 
@@ -59,10 +59,17 @@ const GSSelectInput = ({
           >
             {value.length !== 0 ? handleItemStyle() : `${placeholder}`}
           </Styles.SelectInputValues>
-          <Styles.SelectInputIcon>+</Styles.SelectInputIcon>
+          <Styles.SelectInputIcon>
+            <Arrow
+              css={`
+                transform: rotate(45deg);
+                -webkit-transform: rotate(45deg);
+              `}
+            />
+          </Styles.SelectInputIcon>
         </Styles.SelectInputField>
         {!disabled && (
-          <ItemsList maxHeight={maxHeight} visibility={isItemListVisible}>
+          <ItemsList maxHeight={maxHeight} visible={isItemListVisible}>
             {options.map((item) => (
               <GSSelectInputItem
                 key={item}

@@ -5,13 +5,13 @@ import '../shared/globalStyles.css';
 import Button from './gsButtonStyles';
 import Theme from '../themes/theme';
 
-const GSButton = ({ color, placeholder, size, style, disabled, onClick }) => (
+const GSButton = ({ color, placeholder, size, variant, disabled, onClick }) => (
   <Theme theme={useContext(ThemeContext)}>
     <Button
       type='button'
       color={color}
       size={size}
-      buttonStyle={style}
+      buttonStyle={variant}
       disabled={disabled}
       onClick={() => onClick()}
     >
@@ -24,7 +24,7 @@ GSButton.propTypes = {
   color: PropTypes.string,
   placeholder: PropTypes.string,
   size: PropTypes.string,
-  style: PropTypes.string,
+  variant: PropTypes.string,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
 };
@@ -33,7 +33,7 @@ GSButton.defaultProps = {
   color: 'Primary',
   placeholder: 'Default button',
   size: 'Small',
-  style: 'Standard',
+  variant: 'Standard',
   disabled: false,
   onClick: () => {},
 };

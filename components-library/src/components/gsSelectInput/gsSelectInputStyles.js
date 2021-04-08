@@ -24,8 +24,7 @@ const SelectInputField = styled.div`
 
 const SelectInputValues = styled.div`
   opacity: ${(props) => props.disabled && css`0.5`};
-  flex: 0 0 85%;
-  font-weight: lighter;
+  flex: 0 0 90%;
   display: flex;
   column-gap: 3px;
   flex-flow: wrap;

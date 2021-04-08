@@ -79,7 +79,13 @@ test('Select more than one option if select input is multi select', () => {
 
   fireEvent.click(getByText('Brasil'));
 
-  expect(handleValuesSelected).toHaveBeenCalledWith(['Argentina', 'Brasil']);
+  expect(handleValuesSelected).toHaveBeenCalledWith(
+    expect.arrayContaining(['Argentina'], ['Brasil']),
+  );
+
+  expect(handleValuesSelected).not.toHaveBeenCalledWith(
+    expect.arrayContaining(['Uruguay']),
+  );
 
   expect(handleValuesSelected).toHaveBeenCalledTimes(2);
 });

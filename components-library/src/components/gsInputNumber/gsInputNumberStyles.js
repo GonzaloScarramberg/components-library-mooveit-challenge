@@ -7,6 +7,7 @@ const InputNumberDiv = styled.div`
 `;
 
 const InputNumberField = styled.input`
+  font-family: ${(props) => props.theme.typography.fontFamily};
   width: 100%;
   flex: 2 1 90%;
   opacity: ${(props) => props.disabled && css`0.5`};

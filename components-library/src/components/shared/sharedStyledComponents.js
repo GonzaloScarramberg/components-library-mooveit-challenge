@@ -2,8 +2,8 @@ import styled, { css } from 'styled-components';
 
 const ItemsList = styled.div`
   transition: all 0.3s ease-in-out;
-  visibility: ${(props) => (props.visibility ? css`visible` : css`hidden`)};
-  opacity: ${(props) => (props.visibility ? 1 : 0)};
+  visibility: ${(props) => (props.visible ? css`visible` : css`hidden`)};
+  opacity: ${(props) => (props.visible ? 1 : 0)};
   max-height: ${(props) => props.maxHeight}px;
   display: flex;
   z-index: 1;
@@ -31,4 +31,11 @@ const Item = styled.div`
   font-weight: lighter;
 `;
 
-export { ItemsList, Item };
+const Arrow = styled.i`
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+`;
+
+export { ItemsList, Item, Arrow };

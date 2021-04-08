@@ -1,6 +1,6 @@
 const DefaultTheme = {
   palette: {
-    primary: { main: '#0C0A3E', dark: '#09072B' },
+    primary: { main: '#2196f3', dark: '#3f91d4' },
     secondary: { main: '#797c7e', dark: '#656666' },
     info: { main: '#0288d1', dark: '#01659b' },
     warning: { main: '#d1a102', dark: '#b48b02' },
