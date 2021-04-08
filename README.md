@@ -23,3 +23,5 @@ All the components have a set of tests that you can run to check all the behavio
 `npm test`
 
 With this command all tests will run and you will get their results
+
+The **GS UI Library** is available as an [npm package](https://www.npmjs.com/package/gs-ui-library)
