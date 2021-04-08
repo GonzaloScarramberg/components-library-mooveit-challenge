@@ -27,12 +27,12 @@ const GSInputNumber = ({
     switch (format) {
       case 'grouped-commas':
         valueFormatted = valueFormatted
-          .replaceAll(',', '')
+          .replace(/,/g, '')
           .replace(regexExpression, '$1,');
         break;
       case 'grouped-dots':
         valueFormatted = valueFormatted
-          .replaceAll('.', '')
+          .replace(/\./g, '')
           .replace(regexExpression, '$1.');
         break;
       default:
@@ -45,8 +45,8 @@ const GSInputNumber = ({
   const handleButtonsAction = (inputValue, buttonsValue, operator) => {
     let valueFormatted = inputValue
       .toString()
-      .replaceAll(',', '')
-      .replaceAll('.', '');
+      .replace(/,/g, '')
+      .replace(/\./g, '');
 
     if (operator === 'sumOperator') {
       valueFormatted = +valueFormatted + +buttonsValue;
