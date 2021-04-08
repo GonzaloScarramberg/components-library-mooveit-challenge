@@ -20,7 +20,7 @@ You will be able to display the components and customize all its features and be
 
 All the components have a set of tests that you can run to check all the behaviours. You have to run
 
-`npm test`
+`npm test a`
 
 With this command all tests will run and you will get their results
 
