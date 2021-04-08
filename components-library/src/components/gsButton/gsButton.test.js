@@ -32,7 +32,7 @@ test('Check default button colors', () => {
 
   const button = container.querySelector('button');
 
-  expect(button).toHaveStyle('background-color:#0C0A3E');
+  expect(button).toHaveStyle('background-color:#2196f3');
 
   rerender(<GSButton color='Secondary' />);
 
@@ -67,7 +67,7 @@ test('Check button style', () => {
   rerender(<GSButton variant='Text' color='Primary' />);
 
   expect(button).toHaveStyle('background: none');
-  expect(button).toHaveStyle('color:#0C0A3E');
+  expect(button).toHaveStyle('color:#2196f3');
 });
 
 test('Check button size', () => {

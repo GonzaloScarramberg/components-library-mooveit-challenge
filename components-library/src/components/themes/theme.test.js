@@ -10,7 +10,7 @@ test('check that new theme overrides only chosen values', () => {
 
   const button = container.querySelector('button');
 
-  expect(button).toHaveStyle('background-color:#0C0A3E');
+  expect(button).toHaveStyle('background-color:#2196f3');
 
   const newTheme = {
     palette: { primary: { main: '#4F72EC' } },

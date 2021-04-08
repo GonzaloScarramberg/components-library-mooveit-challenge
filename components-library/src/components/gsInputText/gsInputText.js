@@ -49,7 +49,6 @@ const GSInputText = ({
             value={value}
             type='text'
             name='gsInput'
-            id='gsInputText'
             autoComplete='off'
             className={'input'}
             onChange={(e) => {
