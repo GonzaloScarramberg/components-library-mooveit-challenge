@@ -24,4 +24,4 @@ All the components have a set of tests that you can run to check all the behavio
 
 With this command all tests will run and you will get their results
 
-The **GS UI Library** is available as an [npm package](https://www.npmjs.com/package/gs-ui-library)
+The **GS UI Library** is available as an npm package. follow this [link](https://www.npmjs.com/package/gs-ui-library) and you will get the instructions to install the **GS UI Library** in your own project
